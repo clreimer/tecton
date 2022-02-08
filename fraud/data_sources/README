@@ -1,0 +1,9 @@
+Install pylint using:
+pip install pylint
+
+For quick setup, navigate to this directory(tecton-sample-repo/fraud/data_sources)
+export PYTHONPATH=.
+pylint transactions_batch.py --load-plugins=linter_extension
+
+
+IAstroid nodes: https://pylint.pycqa.org/projects/astroid/en/latest/api/astroid.nodes.html
