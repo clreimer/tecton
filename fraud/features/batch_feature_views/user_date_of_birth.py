@@ -1,28 +1,27 @@
 from tecton import batch_feature_view, Input, BackfillConfig
 from fraud.entities import user
-from fraud.data_sources.fraud_users_batch import fraud_users_batch
+from fraud.data_sources.users import users
 from datetime import datetime
 
 
 @batch_feature_view(
-    inputs={'users': Input(fraud_users_batch)},
+    source=users,
     entities=[user],
-    mode='pyspark',
+    mode='snowflake_sql',
     online=False,
     offline=False,
-    # Note the timestamp is the signup date, hence the old start_time.
-    feature_start_time=datetime(2017,1, 1),
     batch_schedule='1d',
     ttl='3650days',
-    backfill_config=BackfillConfig("multiple_batch_schedule_intervals_per_job"),
-    family='fraud',
-    tags={'release': 'production'},
-    owner='matt@tecton.ai',
+    feature_start_time=datetime(2017,1, 1),
+    timestamp_key="SIGNUP_DATE",
     description='User date of birth, entered at signup.',
 )
 def user_date_of_birth(users):
-    from pyspark.sql import functions as f
-    return users \
-        .withColumn('user_date_of_birth', f.date_format(f.col('dob'), 'yyyy-MM-dd')) \
-        .withColumnRenamed('signup_date', 'timestamp') \
-        .select('user_id', 'user_date_of_birth', 'timestamp')
+    return f'''
+        SELECT
+            USER_ID,
+            TO_CHAR(DOB) as DATE_OF_BIRTH,
+            SIGNUP_DATE
+        FROM
+            {users}
+        '''
