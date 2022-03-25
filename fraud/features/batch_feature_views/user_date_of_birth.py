@@ -13,7 +13,7 @@ from datetime import datetime
     batch_schedule='1d',
     ttl='3650days',
     feature_start_time=datetime(2017,1, 1),
-    timestamp_key="SIGNUP_DATE",
+    timestamp_key="SIGNUP_TIMESTAMP",
     description='User date of birth, entered at signup.',
 )
 def user_date_of_birth(users):
@@ -21,7 +21,7 @@ def user_date_of_birth(users):
         SELECT
             USER_ID,
             TO_CHAR(DOB) as DATE_OF_BIRTH,
-            SIGNUP_DATE
+            SIGNUP_TIMESTAMP
         FROM
             {users}
         '''

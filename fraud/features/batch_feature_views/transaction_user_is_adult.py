@@ -1,7 +1,7 @@
 # from tecton import batch_feature_view, Input, BackfillConfig
 # from fraud.entities import user
 # from fraud.data_sources.fraud_users_batch import fraud_users_batch
-# from fraud.data_sources.transactions_batch import transactions_batch
+# from fraud.data_sources.transactions import transactions
 # from datetime import datetime
 
 # NOTE: Multiple data sources is not yet implemented

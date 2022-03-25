@@ -6,8 +6,8 @@ users = BatchDataSource(
     name="users",
     batch_ds_config=SnowflakeDSConfig(
       database="TECTON_DEMO_DATA",
-      schema="FRAUD",
-      table="USERS",
-      timestamp_key="SIGNUP_DATE",
+      schema="DAVID_DBT",
+      table="NEW_USERS",
+      timestamp_key="SIGNUP_TIMESTAMP",
     ),
 )

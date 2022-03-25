@@ -17,8 +17,8 @@ from datetime import datetime
 def last_transaction_amount(transactions):
     return f'''
         SELECT
-            NAMEORIG as USER_ID,
-            AMOUNT,
+            USER_ID,
+            AMT,
             TIMESTAMP
         FROM
             {transactions}

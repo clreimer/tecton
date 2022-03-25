@@ -1,6 +1,6 @@
 # from tecton import batch_feature_view, Input, tecton_sliding_window, transformation, const, BackfillConfig
 # from fraud.entities import user
-# from fraud.data_sources.transactions_batch import transactions_batch
+# from fraud.data_sources.transactions import transactions
 # from datetime import datetime
 
 # NOTE: Materialization context is not currently supported in Snowflake
